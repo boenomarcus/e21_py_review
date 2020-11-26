@@ -16,14 +16,17 @@ Autor: Marcus Moresco Boeno
 # tem a combinação de 5 cartas :)
 
 
-5 Principais combinações consideradas
-(https://www.pokerstars.com/br/poker/games/rules/hand-rankings/?no_redirect=1)
-
-    1°) Royal Flush
-    2°) Straight Flush
-    3°) Quadra
-    4°) Full House
-    5°) Flush
+Classificações:
+    1)  Royal Straight Flush
+    2)  Straight Flush
+    3)  Four of a Kind
+    4)  Full House
+    5)  Flush
+    6)  Straight
+    7)  Three of a Kind
+    8)  Two Pair
+    9)  One Pair
+    10) High Card
 """
 
 # Standard library imports
@@ -63,30 +66,34 @@ def hand_classification(hand) -> bool:
     card_ranks = [x.rank for x in hand.cards]
     card_suits = [x.suit for x in hand.cards]
 
+    # Recupera informações de quantidade de cartas e naipes
     max_card, min_card = max(card_ranks), min(card_ranks)
     num_suits = len(set(card_suits))
     unique_cards = len(set(card_ranks))
+
+    # Cria lista vazia para guardar classificações
+    classificacoes = []
     
     # Royal Flush, Straight FLush e Flush
     if num_suits == 1:
         
         # Royal Flush
         if sorted(card_ranks) == [1, 10, 11, 12, 13]:
-            return "Royal Flush"
+            classificacoes.append([1, "Royal Straight Flush"])
         
         # Straight Flush
         elif sorted(card_ranks) == list(range(min_card, max_card+1)):
-            return "Straight Flush"
+            classificacoes.append([2, "Straight Flush"])
         
         # Flush
         else:
-            return "Flush"
+            classificacoes.append([5, "Flush"])
     
-    # Sequence
+    # Straight
     elif sorted(card_ranks) == list(range(min_card, max_card+1)):
-        return "Sequence"
+        classificacoes.append([6, "Straight"])
     
-    # Quadra ou Full House
+    # Four of a Kind ou Full House
     elif unique_cards == 2:
 
         # Recupera primeira carta
@@ -98,27 +105,41 @@ def hand_classification(hand) -> bool:
 
         # Quadra
         if counter == 4 or counter == 1:
-            return "Quadra"
+            classificacoes.append([3, "Four of a Kind"])
         
         # Full House
         else:
-            return "Full House"
+            classificacoes.append([4, "Full House"])
     
     # Dois pares ou uma trinca
     elif unique_cards == 3:
 
-        # Dois pares
+        # Realiza contagem das cartas
+        dados = {}
+        for card in card_ranks:
+            if card not in dados.keys():
+                dados[card] = 1
+            else:
+                dados[card] += 1
+        
+        # Three of a Kind
+        if sorted(dados.values())[-1] == 3:
+            classificacoes.append([7, "Three of a Kind"])
+        
+        # Two Pair
+        else:
+            classificacoes.append([8, "Two Pair"])
 
-        # Trinca
-        return "Two Pairs of One Three of a Kind"
-    
     # Um par
     elif unique_cards == 4:
-        return "One Pair"
+        classificacoes.append([9, "One Pair"])
     
     # Highest Card
     else:
-        return "Highest card"
+        classificacoes.append([10, "High Card"])
+    
+    # Retorna classificação de maior pontuação
+    return sorted(classificacoes)[0][1]
         
 
 def main():
