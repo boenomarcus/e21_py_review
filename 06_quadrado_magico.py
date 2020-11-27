@@ -267,3 +267,5 @@ if __name__ == "__main__":
     
     # Indica saída do sistema
     print("\nSaindo, até logo! ...\n")
+    
+    # Vendo teus códigos eu percebi que preciso tratar melhor minhas exeções. Seus códigos são muito bons e to aprendendo bastante com eles.
