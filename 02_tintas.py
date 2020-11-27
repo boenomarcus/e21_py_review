@@ -162,4 +162,4 @@ if __name__ == "__main__":
     # Indica saída do sistema
     print("\nSaindo, até logo! ...\n")
 
-
+#Muito legais essas bibliotecas, não sabia delas. Ficou bem organizado, por mais que algumas coisas eu não entenda.

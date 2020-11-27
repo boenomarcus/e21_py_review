@@ -142,3 +142,5 @@ if __name__ == "__main__":
     
     # Indica saída do sistema
     print("\nSaindo, até logo! ...\n")
+    
+#Muitas funções legais que eu nem fazia ideia que existiam no Python. Ficou bem legal e super diferente do que estou acostumada a ver hahaha
