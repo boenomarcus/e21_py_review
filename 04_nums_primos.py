@@ -155,3 +155,7 @@ if __name__ == "__main__":
     
     # Indica saída do sistema
     print("\nSaindo, até logo! ...\n")
+    
+    
+    # Não entendi muita coisa mas acho que entendi sua lógica. Acho muito legal ver que várias lógicas podem resolver um exercício só.
+    # Bem legal sua organização, Marcus
